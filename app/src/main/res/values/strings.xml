@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Proyecto</string>
+    <string name="Titulo">Bienvenido</string>
+    <string name="p1btnadmin">Administrador</string>
+    <string name="p1btnregistra">Registrarse</string>
+    <string name="padmintitulo">Bienvenido Admin.</string>
+    <string name="padminbtn1">Listar</string>
+    <string name="padminbtn2">Capturar preguntas</string>
+    <string name="pusuariostitulo">Lista de usuarios</string>
+    <string name="tvpregunta">Pregunta</string>
+    <string name="hpregunta">Capture la pregunta</string>
+    <string name="h2">a) </string>
+    <string name="h3">b) </string>
+    <string name="h4">c) </string>
+    <string name="btnguardar">Guardar Preguntas</string>
+    <string name="txtsig">Siguiente pregunta</string>
+    <string name="rc">Respuesta Correcta</string>
+    <string name="tvexamen">Examen</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="anterior">Anterior</string>
+    <string name="terminar">Terminar</string>
+</resources>

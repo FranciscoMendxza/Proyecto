@@ -14,9 +14,12 @@
     <string name="h4">c) </string>
     <string name="btnguardar">Guardar Preguntas</string>
     <string name="txtsig">Siguiente pregunta</string>
-    <string name="rc">Respuesta Correcta</string>
+    <string name="rc">Inciso correcto</string>
     <string name="tvexamen">Examen</string>
     <string name="siguiente">Siguiente</string>
     <string name="anterior">Anterior</string>
     <string name="terminar">Terminar</string>
+    <string name="tituloLu">Terminar</string>
+    <string name="tituloM">Ubicacion donde fue realizado el examen</string>
+    <string name="calificacion">Resultado</string>
 </resources>

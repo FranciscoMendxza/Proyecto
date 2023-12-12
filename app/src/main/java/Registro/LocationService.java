@@ -21,69 +21,36 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 public class LocationService extends Service {
-
-    private static final String TAG = "LocationService";
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Configurar la solicitud de ubicación
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(500); // Intervalo de actualización en milisegundos (aquí, 10 segundos)
-        locationRequest.setFastestInterval(500); // Intervalo más rápido
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        // Configurar el callback de ubicación
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                if (locationResult == null) {
-                    return;
-                }
+                if (locationResult == null) {return;}
                 for (Location location : locationResult.getLocations()) {
-                    // Manejar la ubicación obtenida, por ejemplo, actualizar los TextView
-                    double latitud = location.getLatitude();
-                    double longitud = location.getLongitude();
-                    actualizarUbicacionEnTextView(latitud, longitud);
+                    // Enviar la ubicación a la actividad UsuarioActivity
+                    sendLocationBroadcast(location);
                 }
             }
         };
-
-        // Solicitar actualizaciones de ubicación
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "Servicio iniciado");
-        Toast.makeText(this, "Servicio Iniciado", Toast.LENGTH_SHORT).show();
+        startLocationUpdates();
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
+        stopLocationUpdates();
         super.onDestroy();
-        // Detener las actualizaciones de ubicación cuando el servicio se destruye
-        if (fusedLocationClient != null && locationCallback != null) {
-            fusedLocationClient.removeLocationUpdates(locationCallback);
-        }
-        Log.d(TAG, "Servicio detenido");
-        Toast.makeText(this, "Servicio Detenido", Toast.LENGTH_SHORT).show();
     }
 
     @Nullable
@@ -92,13 +59,25 @@ public class LocationService extends Service {
         return null;
     }
 
-    private void actualizarUbicacionEnTextView(double latitud, double longitud) {
-        // Actualizar tus TextView (txtlatitud y txtlongitud) con los valores de latitud y longitud
-        Log.d(TAG, "Latitud: " + latitud + ", Longitud: " + longitud);
+    private void startLocationUpdates() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(60000); // Actualizar cada 1 minuto
+        locationRequest.setFastestInterval(60000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        Intent intent = new Intent("ubicacion_actualizada");
-        intent.putExtra("latitud", latitud);
-        intent.putExtra("longitud", longitud);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+        }
+    }
+
+    private void stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback);
+    }
+
+    private void sendLocationBroadcast(Location location) {
+        Intent intent = new Intent("location-update");
+        intent.putExtra("latitud", location.getLatitude());
+        intent.putExtra("longitud", location.getLongitude());
         sendBroadcast(intent);
     }
 }

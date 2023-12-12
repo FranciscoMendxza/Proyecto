@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Administrador.MapaActivity">
+
+  <fragment
+      android:id="@+id/map"
+      android:name="com.google.android.gms.maps.SupportMapFragment"
+      android:layout_width="349dp"
+      android:layout_height="486dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginTop="32dp"
+      android:layout_marginEnd="5dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      map:cameraZoom="10"
+      map:layout_constraintTop_toBottomOf="@+id/textView13"
+      map:uiRotateGestures="true"
+      map:uiZoomControls="true"
+      tools:ignore="FragmentTagUsage,MissingConstraints" />
+
+  <TextView
+      android:id="@+id/textView13"
+      android:layout_width="380dp"
+      android:layout_height="77dp"
+      android:layout_marginTop="32dp"
+      android:gravity="center"
+      android:text="@string/tituloM"
+      android:textColor="@color/black"
+      android:textSize="30sp"
+      map:layout_constraintEnd_toEndOf="parent"
+      map:layout_constraintHorizontal_bias="0.516"
+      map:layout_constraintStart_toStartOf="parent"
+      map:layout_constraintTop_toTopOf="parent"
+      tools:ignore="TextSizeCheck" />
+
+  <TextView
+      android:id="@+id/txtcalif"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:text="@string/calificacion"
+      android:textColor="@color/black"
+      android:textSize="25sp"
+      map:layout_constraintEnd_toEndOf="parent"
+      map:layout_constraintHorizontal_bias="0.457"
+      map:layout_constraintStart_toStartOf="parent"
+      map:layout_constraintTop_toBottomOf="@+id/map" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

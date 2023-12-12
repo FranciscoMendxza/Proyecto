@@ -9,16 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import DTOs.Datos;
+import Almacen.ConexionP;
+import DTOs.DatosP;
 import mx.edu.tesoem.isc.proyecto.Principal;
 import mx.edu.tesoem.isc.proyecto.R;
 
@@ -26,8 +21,8 @@ public class LlenarPreguntas extends AppCompatActivity {
     Button siguiente, guardar;
     EditText pregunta, r1, r2, r3, rc;
     TextView npregunta;
-    int contador = 1;
-    List<Datos> listaPreguntas = new ArrayList<>();
+    private int contador = 1;
+    List<DatosP> listaPreguntas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +31,8 @@ public class LlenarPreguntas extends AppCompatActivity {
 
         siguiente = findViewById(R.id.btnsig);
         guardar = findViewById(R.id.btnguarda);
+
+
 
         npregunta = findViewById(R.id.tv1);
         pregunta = findViewById(R.id.txtpregunta);
@@ -48,56 +45,42 @@ public class LlenarPreguntas extends AppCompatActivity {
         npregunta.setText("Pregunta " + contador);
 
         siguiente.setOnClickListener(v -> {
-            if (!pregunta.getText().toString().isEmpty() && !r1.getText().toString().isEmpty() && !r2.getText().toString().isEmpty() &&
-                !r3.getText().toString().isEmpty() && !rc.getText().toString().isEmpty()){
-                agregarPregunta();
+            agregarPregunta();
 
-                contador++;
-                npregunta.setText("Pregunta " + contador);
-
-                pregunta.setText("");
-                r1.setText("");
-                r2.setText("");
-                r3.setText("");
-                rc.setText("");
-
-                if (contador == 2){
-                    guardar.setEnabled(true);
-                    siguiente.setEnabled(false);
-                }
+            contador++;
+            if (contador == 10){
+                guardar.setEnabled(true);
+                siguiente.setEnabled(false);
+            }else{
+                siguiente.setEnabled(true);
             }
+
+            pregunta.setText("");
+            r1.setText("");
+            r2.setText("");
+            r3.setText("");
+            rc.setText("");
+
+            npregunta.setText("Pregunta " + contador);
         });
 
         guardar.setOnClickListener(v -> {
             agregarPregunta();
-            guardarArchivo();
-            Intent lanza = new Intent(this, Principal.class);
+            Intent lanza = new Intent(getApplicationContext(), Principal.class);
             startActivity(lanza);
-            Toast.makeText(this, "Se guardaron las preguntas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Se grabaron las preguntas", Toast.LENGTH_SHORT).show();
         });
     }
 
-    private void guardarArchivo(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String preguntasJson = gson.toJson(listaPreguntas);
-        String nomarch = "preguntas.json";
-
-        try (FileWriter writer = new FileWriter(getFilesDir().getPath() + "/" + nomarch)){
-            writer.write(preguntasJson);
-            writer.flush();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
     private void agregarPregunta(){
-        Datos nuevaPregunta = new Datos();
+        DatosP datosp = new DatosP(pregunta.getText().toString(), r1.getText().toString(), r2.getText().toString(), r3.getText().toString(), rc.getText().toString());
+        listaPreguntas.add(datosp);
 
-        nuevaPregunta.setPregunta(pregunta.getText().toString());
-        nuevaPregunta.setR1(r1.getText().toString());
-        nuevaPregunta.setR2(r2.getText().toString());
-        nuevaPregunta.setR3(r3.getText().toString());
-        nuevaPregunta.setRc(rc.getText().toString());
-        listaPreguntas.add(nuevaPregunta);
+        ConexionP conexionp = new ConexionP();
+        if (conexionp.Grabar(getApplicationContext(), listaPreguntas)){
+            //Toast.makeText(this, "Se grabó", Toast.LENGTH_SHORT).show();
+        }else{
+            //Toast.makeText(this, "No se grabó", Toast.LENGTH_SHORT).show();
+        }
     }
 }

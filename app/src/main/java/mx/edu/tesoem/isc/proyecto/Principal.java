@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import Administrador.Admin;
 import Registro.Usuario;
@@ -17,6 +19,7 @@ import Registro.Usuario;
 public class Principal extends AppCompatActivity {
 
     Button admin, registra;
+    EditText pwd;
     private static final int PERMISO = 100;
 
     @Override
@@ -26,11 +29,20 @@ public class Principal extends AppCompatActivity {
 
         admin = findViewById(R.id.btnadmin);
         registra = findViewById(R.id.btnreg);
+        pwd = findViewById(R.id.txtcontraseña);
         registra.setEnabled(false);
 
         admin.setOnClickListener(v -> {
-            Intent lanza = new Intent(this, Admin.class);
-            startActivity(lanza);
+            if (pwd.getText().toString().equals("Francisco")){
+                Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                Intent lanza = new Intent(this, Admin.class);
+                startActivity(lanza);
+            }else if (pwd.getText().toString().isEmpty()){
+                Toast.makeText(this, "Campo vacío. Capture una contraseña", Toast.LENGTH_SHORT).show();
+            }else{
+                pwd.setText("");
+                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+            }
         });
 
         registra.setOnClickListener(v -> {

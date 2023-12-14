@@ -32,7 +32,7 @@ public class LlenarPreguntas extends AppCompatActivity {
         siguiente = findViewById(R.id.btnsig);
         guardar = findViewById(R.id.btnguarda);
 
-
+        Toast.makeText(this, "Se ingresaran 10 preguntas", Toast.LENGTH_SHORT).show();
 
         npregunta = findViewById(R.id.tv1);
         pregunta = findViewById(R.id.txtpregunta);

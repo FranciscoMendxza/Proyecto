@@ -28,7 +28,7 @@ import mx.edu.tesoem.isc.proyecto.R;
 public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     GoogleMap mMap;
-    TextView txtcalif;
+    TextView txtcalif, latitu, longitu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,9 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_mapa);
 
         txtcalif = findViewById(R.id.txtcalif);
+        latitu = findViewById(R.id.testlatitud);
+        longitu = findViewById(R.id.testlongitud);
+
         Intent serviceIntent = new Intent(this, LocationService.class);
         startService(serviceIntent);
 
@@ -43,10 +46,12 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent intent = getIntent();
         String latitud = intent.getStringExtra("latitud");
         String longitud = intent.getStringExtra("longitud");
-        String calif = intent.getStringExtra("calif");
+        String calif = (intent.getStringExtra("calif"));
 
         // Mostrar la calificación en el TextView
-        txtcalif.setText("La calificación que saco fue " + calif);
+        txtcalif.setText("La calificación obtenida fue " + calif);
+        latitu.setText("Latitud: " + latitud);
+        longitu.setText("Longitud: " + longitud);
 
         initMap(latitud, longitud);
     }
@@ -65,7 +70,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 LatLng currentLocation = new LatLng(latitude, longitude);
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Aqui se rifo mi amig@"));
+                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Ubicacion aproximada"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             }
         };

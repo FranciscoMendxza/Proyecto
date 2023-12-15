@@ -29,7 +29,6 @@
             android:enabled="true"
             android:exported="false"
             android:permission="TODO" />
-
         <activity
             android:name="Exa.Examen"
             android:exported="false" />

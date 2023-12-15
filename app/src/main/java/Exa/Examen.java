@@ -122,6 +122,7 @@ public class Examen extends AppCompatActivity {
 
                     double porcentaje = (double) aciertos / listaPreguntas.size() * 100;
                     //Toast.makeText(this, "Porcentaje de respuestas: " + porcentaje + "%", Toast.LENGTH_SHORT).show();
+                    
                     grabar(nombre, latitud, longitud, porcentaje);
                     Intent intent1 = new Intent(this, Principal.class);
                     startActivity(intent1);

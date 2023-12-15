@@ -25,6 +25,7 @@ public class Usuarios extends AppCompatActivity {
     CustomAdapter adaptador;
     List<DatosU> listadatos = new ArrayList<>();
 
+    int a = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +36,25 @@ public class Usuarios extends AppCompatActivity {
 
         gvdatos.setOnItemClickListener((parent, view, i, l) -> {
             int columnIndex = i % 6; // Índice de la columna actual (0 a 5)
-
             if (columnIndex == 4 && "Ver".equals(contenidogv.get(i))) {
                 // Obtén los datos de la línea seleccionada
                 String latitud = contenidogv.get(i - 2); // El índice de latitud es i - 2
                 String longitud = contenidogv.get(i - 1); // El índice de longitud es i - 1
                 String calif = contenidogv.get(i + 1); // El índice de calif es i
 
+                a = listadatos.size();
+                String numero = String.valueOf(a + 1);
+
                 // Crea un Intent para iniciar la actividad MapaActivity
                 Intent intent = new Intent(this, MapaActivity.class);
-
                 // Agrega los datos como extras al Intent
                 intent.putExtra("latitud", latitud);
                 intent.putExtra("longitud", longitud);
                 intent.putExtra("calif", calif);
+                intent.putExtra("numero", numero);
+
+                //Pasamos la lista como un extra
+                intent.putStringArrayListExtra("preguntas", contenidogv);
                 startActivity(intent);
             }
         });
@@ -64,6 +70,8 @@ public class Usuarios extends AppCompatActivity {
             contenidogv.add("Longitud");
             contenidogv.add("Calif");
             contenidogv.add("Vista");
+
+            String numero = String.valueOf(listadatos.size());
 
             if (listadatos.size() > 0 ){
                 int idC = 1;

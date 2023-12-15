@@ -87,7 +87,6 @@ public class Preguntas extends AppCompatActivity {
     public void obtenerpregunta(){
         numerodepreguntas = Integer.parseInt(String.valueOf(cantidad.getText()));
         Toast.makeText(this, "Se grabarán " + numerodepreguntas + " preguntas.", Toast.LENGTH_SHORT).show();
-
     }
 
     private void agregarPregunta(){

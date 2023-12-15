@@ -41,15 +41,15 @@
 
   <TextView
       android:id="@+id/txtcalif"
-      android:layout_width="300dp"
-      android:layout_height="30dp"
-      android:layout_marginTop="24dp"
+      android:layout_width="390dp"
+      android:layout_height="35dp"
+      android:layout_marginTop="16dp"
       android:gravity="center"
       android:text="@string/calificacion"
       android:textColor="@color/black"
-      android:textSize="20sp"
+      android:textSize="18sp"
       map:layout_constraintEnd_toEndOf="parent"
-      map:layout_constraintHorizontal_bias="0.486"
+      map:layout_constraintHorizontal_bias="0.476"
       map:layout_constraintStart_toStartOf="parent"
       map:layout_constraintTop_toBottomOf="@+id/testlongitud"
       tools:ignore="MissingConstraints,TextSizeCheck" />
@@ -61,7 +61,7 @@
       android:layout_marginTop="16dp"
       android:gravity="center"
       android:textColor="#000000"
-      android:textSize="20sp"
+      android:textSize="18sp"
       map:layout_constraintEnd_toEndOf="parent"
       map:layout_constraintStart_toStartOf="parent"
       map:layout_constraintTop_toBottomOf="@+id/map" />
@@ -73,7 +73,7 @@
       android:layout_marginTop="16dp"
       android:gravity="center"
       android:textColor="#000000"
-      android:textSize="20sp"
+      android:textSize="18sp"
       map:layout_constraintEnd_toEndOf="parent"
       map:layout_constraintHorizontal_bias="0.486"
       map:layout_constraintStart_toStartOf="parent"

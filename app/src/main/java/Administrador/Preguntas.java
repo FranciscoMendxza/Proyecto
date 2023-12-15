@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,11 +18,12 @@ import DTOs.DatosP;
 import mx.edu.tesoem.isc.proyecto.Principal;
 import mx.edu.tesoem.isc.proyecto.R;
 
-public class LlenarPreguntas extends AppCompatActivity {
-    Button siguiente, guardar;
-    EditText pregunta, r1, r2, r3, rc;
-    TextView npregunta;
+public class Preguntas extends AppCompatActivity {
+    Button siguiente, guardar, enviar;
+    EditText pregunta, r1, r2, r3, rc, cantidad;
+    TextView npregunta, tv3;
     private int contador = 1;
+    static int numerodepreguntas;
     List<DatosP> listaPreguntas = new ArrayList<>();
 
     @Override
@@ -31,8 +33,9 @@ public class LlenarPreguntas extends AppCompatActivity {
 
         siguiente = findViewById(R.id.btnsig);
         guardar = findViewById(R.id.btnguarda);
-
-        Toast.makeText(this, "Se ingresaran 10 preguntas", Toast.LENGTH_SHORT).show();
+        enviar = findViewById(R.id.btnenviar);
+        cantidad = findViewById(R.id.ednumber);
+        tv3 = findViewById(R.id.tv3);
 
         npregunta = findViewById(R.id.tv1);
         pregunta = findViewById(R.id.txtpregunta);
@@ -42,13 +45,22 @@ public class LlenarPreguntas extends AppCompatActivity {
         rc = findViewById(R.id.txtrc);
 
         guardar.setEnabled(false);
+        siguiente.setEnabled(false);
         npregunta.setText("Pregunta " + contador);
 
+        enviar.setOnClickListener(v -> {
+            obtenerpregunta();
+            siguiente.setEnabled(true);
+        });
+
         siguiente.setOnClickListener(v -> {
+            cantidad.setVisibility(View.INVISIBLE);
+            enviar.setVisibility(View.INVISIBLE);
+            tv3.setVisibility(View.INVISIBLE);
             agregarPregunta();
 
             contador++;
-            if (contador == 10){
+            if (contador == numerodepreguntas){
                 guardar.setEnabled(true);
                 siguiente.setEnabled(false);
             }else{
@@ -70,6 +82,12 @@ public class LlenarPreguntas extends AppCompatActivity {
             startActivity(lanza);
             Toast.makeText(this, "Se grabaron las preguntas", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    public void obtenerpregunta(){
+        numerodepreguntas = Integer.parseInt(String.valueOf(cantidad.getText()));
+        Toast.makeText(this, "Se grabarán " + numerodepreguntas + " preguntas.", Toast.LENGTH_SHORT).show();
+
     }
 
     private void agregarPregunta(){

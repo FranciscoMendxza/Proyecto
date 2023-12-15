@@ -1,3 +1,4 @@
+
 package Exa;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,17 +77,15 @@ public class Examen extends AppCompatActivity {
                     }
                 });
 
-                rg.setOnCheckedChangeListener((RadioGroupp, i) -> {
-                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked()){
-                        siguiente.setEnabled(true);
-                        anterior.setEnabled(contador != 0);
+                rg.setOnCheckedChangeListener((radioGroup, i) -> {
+                    boolean isAnyRadioButtonSelected = rb1.isChecked() || rb2.isChecked() || rb3.isChecked();
 
-                        if (contador == 1){
-                            siguiente.setEnabled(false);
-                            terminar.setEnabled(true);
-                        }
-                    }else{
+                    siguiente.setEnabled(isAnyRadioButtonSelected);
+                    anterior.setEnabled(contador != 0);
+
+                    if (contador == listaPreguntas.size() - 1) {
                         siguiente.setEnabled(false);
+                        terminar.setEnabled(true);
                     }
                 });
 
@@ -120,7 +119,10 @@ public class Examen extends AppCompatActivity {
                             }
                         }
                     }
-                    grabar(nombre, latitud, longitud, puntaje);
+
+                    double porcentaje = (double) aciertos / listaPreguntas.size() * 100;
+                    //Toast.makeText(this, "Porcentaje de respuestas: " + porcentaje + "%", Toast.LENGTH_SHORT).show();
+                    grabar(nombre, latitud, longitud, porcentaje);
                     Intent intent1 = new Intent(this, Principal.class);
                     startActivity(intent1);
                 });
@@ -129,8 +131,8 @@ public class Examen extends AppCompatActivity {
     }
 
     private void mostrarPreguntaActual() {
-        DatosP preguntaActual = listaPreguntas.get(contador);
-        pregunta.setText("Pregunta " + (contador + 1) + ".\n" + "¿" + preguntaActual.getPregunta() + "?");
+        DatosP preguntaActual = listaPreguntas.get(idC - 1);
+        pregunta.setText("Pregunta " + (idC) + ".\n" + "¿" + preguntaActual.getPregunta() + "?");
         rb1.setText("a) " + preguntaActual.getR1());
         rb2.setText("b) " + preguntaActual.getR2());
         rb3.setText("c) " + preguntaActual.getR3());
@@ -148,8 +150,8 @@ public class Examen extends AppCompatActivity {
         }
     }
 
-    private void grabar(String nombre, double latitud, double longitud, int puntaje) {
-        DatosU datosU = new DatosU(nombre, Double.toString(latitud), Double.toString(longitud), String.valueOf(puntaje));
+    private void grabar(String nombre, double latitud, double longitud, double porcentaje) {
+        DatosU datosU = new DatosU(nombre, Double.toString(latitud), Double.toString(longitud), String.valueOf(porcentaje));
         listaDatos.add(datosU);
         ConexionU conexionU = new ConexionU();
         if (conexionU.Grabar(this, listaDatos)) {

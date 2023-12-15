@@ -4,92 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Preguntas.Preguntas">
+    tools:context="Administrador.Preguntas">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="309dp"
         android:layout_height="41dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="Capturar Preguntas"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="380dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Numero de preguntas: "
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="HardcodedText,RtlHardcoded,TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btnguarda"
+        android:layout_width="160dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/btnguardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtrc"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/btnsig"
+        android:layout_width="160dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtsig"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtrc"
+        tools:ignore="MissingConstraints,VisualLintBounds" />
 
     <EditText
         android:id="@+id/txtpregunta"
         android:layout_width="375dp"
         android:layout_height="51dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/hpregunta"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1"
         tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/txtr3"
-        android:layout_width="375dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="172dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/h4"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="96dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:text="@string/tvpregunta"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="HardcodedText,RtlHardcoded,TextSizeCheck" />
-
-    <EditText
-        android:id="@+id/txtr1"
-        android:layout_width="375dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="36dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/h2"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <EditText
         android:id="@+id/txtrc"
         android:layout_width="375dp"
         android:layout_height="51dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="232dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/rc"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <EditText
+        android:id="@+id/txtr2"
+        android:layout_width="375dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="96dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/h3"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -97,52 +106,84 @@
         android:id="@+id/textView7"
         android:layout_width="96dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Respuestas"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtpregunta"
         tools:ignore="HardcodedText,TextSizeCheck" />
 
     <EditText
-        android:id="@+id/txtr2"
-        android:layout_width="375dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="108dp"
+        android:id="@+id/ednumber"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="4dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/h3"
+        android:hint="@string/cantidad_de_preguntas"
+        android:inputType="number"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+    <EditText
+        android:id="@+id/txtr3"
+        android:layout_width="375dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="160dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/h4"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <Button
-        android:id="@+id/btnsig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/txtsig"
+    <EditText
+        android:id="@+id/txtr1"
+        android:layout_width="375dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="24dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/h2"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtrc"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="96dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:text="@string/tvpregunta"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv3"
+        tools:ignore="HardcodedText,RtlHardcoded,TextSizeCheck" />
 
     <Button
-        android:id="@+id/btnguarda"
+        android:id="@+id/btnenviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/btnguardar"
+        android:layout_marginTop="4dp"
+        android:text="@string/enviar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsig" />
+        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintStart_toEndOf="@+id/ednumber"
+        app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,7 @@
             android:name="Registro.Usuario"
             android:exported="false" />
         <activity
-            android:name="Administrador.LlenarPreguntas"
+            android:name="Administrador.Preguntas"
             android:exported="false" />
         <activity
             android:name="Administrador.Usuarios"

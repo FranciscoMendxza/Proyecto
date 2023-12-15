@@ -24,4 +24,6 @@
     <string name="calificacion">Resultado</string>
     <string name="valide_su_contrase_a_administrador">Contraseña.</string>
     <string name="ingrese_su_contrase_a">Ingrese su contraseña</string>
+    <string name="enviar">Enviar</string>
+    <string name="cantidad_de_preguntas">Cantidad</string>
 </resources>

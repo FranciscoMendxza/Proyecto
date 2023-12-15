@@ -26,7 +26,7 @@ public class Admin extends AppCompatActivity {
         });
 
         preguntas.setOnClickListener(v -> {
-            Intent lanza = new Intent(this, LlenarPreguntas.class);
+            Intent lanza = new Intent(this, Preguntas.class);
             startActivity(lanza);
         });
     }

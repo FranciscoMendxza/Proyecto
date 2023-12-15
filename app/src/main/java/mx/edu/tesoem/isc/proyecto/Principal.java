@@ -29,7 +29,7 @@ public class Principal extends AppCompatActivity {
 
         admin = findViewById(R.id.btnadmin);
         registra = findViewById(R.id.btnreg);
-        pwd = findViewById(R.id.txtcontraseña);
+        pwd = findViewById(R.id.txtcontrasena);
         registra.setEnabled(false);
 
         admin.setOnClickListener(v -> {
@@ -46,8 +46,8 @@ public class Principal extends AppCompatActivity {
         });
 
         registra.setOnClickListener(v -> {
-            Intent lanza = new Intent(Principal.this, Usuario.class);
-            startActivity(lanza);
+            Intent intent = new Intent(this, Usuario.class);
+            startActivity(intent);
         });
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
